@@ -1,7 +1,7 @@
 import pyrogram
 from time import time 
 from loguru import logger
-
+from pyrogram.errors import FloodWait
 from pyrogram import idle
 import random, os, shutil, asyncio
 
@@ -199,14 +199,36 @@ class Manhwa_Bot(pyrogram.Client, Vars):
       bot_token=self.BOT_TOKEN,
       plugins=self.plugins,
       workers=50,
+      sleep_threshold=30,
     )
     self.logger = logger
     self.__version__ = pyrogram.__version__
     self.FSB = []
 
   async def start(self):
-    await super().start()
+    # Add retry logic for FloodWait
+    max_retries = 3
+    retry_count = 0
+    
+    while retry_count < max_retries:
+        try:
+            await super().start()
+            break
+        except FloodWait as e:
+            retry_count += 1
+            wait_time = e.value
+            logger.warning(f"FloodWait: Waiting {wait_time} seconds before retry {retry_count}/{max_retries}")
+            await asyncio.sleep(wait_time)
+        except Exception as e:
+            logger.error(f"Failed to start bot: {e}")
+            return
+    
+    if retry_count == max_retries:
+        logger.error("Max retries exceeded. Could not start bot.")
+        return
 
+    # . continues here
+    
     async def run_flask():
       cmds = ("gunicorn", "app:app")
       process = await asyncio.create_subprocess_exec(
