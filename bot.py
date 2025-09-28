@@ -25,9 +25,9 @@ class Vars:
   UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
   DB_URL = os.environ.get("DB_URL", "mongodb://localhost:27017/manhwa_bot")
   
-  PORT = int(os.environ.get("PORT", "5000"))
-  OWNER = int(os.environ.get("OWNER","1880221341"))
-  ADMINS = os.environ.get("ADMINS", "1880221341")
+  PORT = int(os.environ.get("PORT", "8080"))
+  OWNER = int(os.environ.get("OWNER","742402153"))
+  ADMINS = os.environ.get("ADMINS", "742402153")
   ADMINS = [int(admin) for admin in (ADMINS).split(" ")]
   ADMINS.append(OWNER)
   
