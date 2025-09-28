@@ -28,11 +28,11 @@ HELP_MSG = """
 <b>To download a manga just type the name of the manga you want to keep up to date.</b>
 
 For example:
-`One Piece`
+`Overflow🙂`
 
 <blockquote expandable><i>Then you will have to choose the language of the manga. Depending on this language, you will be able to choose the website where you could download the manga. Here you will have the option to subscribe, or to choose a chapter to download. The chapters are sorted according to the website.</i></blockquote>
 
-<blockquote><b>Updates Channel : @Wizard_bots</b></blockquote>
+<blockquote><b>Updates Channel : @DemonArmy</b></blockquote>
 """
 
 @Bot.on_message(filters.private)
@@ -169,8 +169,8 @@ async def start(client, message):
        "<b><i>Check /help for more information.</i></b>"),
       reply_markup=InlineKeyboardMarkup([
         [
-          InlineKeyboardButton('✯ Repo ✯', url="https://github.com/Dra-Sama/Manhwa-Bot"),
-          InlineKeyboardButton("✯ Support ✯", url="https://t.me/WizardBotHelper")
+          InlineKeyboardButton('✯ Repo ✯', url="https://github.com/DemonArmyBot/Manhwabot"),
+          InlineKeyboardButton("✯ Support ✯", url="https://t.me/DemonArmy")
         ],
         [
           InlineKeyboardButton("♛ Setting ♛", callback_data="mus"),
