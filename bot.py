@@ -176,19 +176,32 @@ pyroutils.MIN_CHAT_ID = -99999999999999
 pyroutils.MIN_CHANNEL_ID = -100999999999999
 
 def load_fsb_vars(self):
-  channel = Vars.FORCE_SUB_CHANNEL
-  try:
-    if "," in Vars.FORCE_SUB_CHANNEL:
-      for channel_line in channel.split(","):
-        self.FSB.append(
-          (channel_line.split(":")[0], channel_line.split(":")[1])
-        )
-    else:
-      self.FSB.append((channel.split(":")[0], channel.split(":")[1]))
-  except:
-    logger.error(" FORCE_SUB_CHANNEL is not set correctly! ")
-    sys.exit()
-
+    channel = Vars.FORCE_SUB_CHANNEL
+    self.FSB = []
+    try:
+        if not channel:
+            logger.warning("No force subscription channels configured")
+            return
+            
+        # Remove any fancy Unicode characters and clean the string
+        channel = channel.strip()
+        
+        if "," in channel:
+            for channel_line in channel.split(","):
+                if ":" in channel_line:
+                    button_text = channel_line.split(":")[0].strip()
+                    channel_id = channel_line.split(":")[1].strip()
+                    self.FSB.append((button_text, channel_id))
+        elif ":" in channel:
+            button_text = channel.split(":")[0].strip()
+            channel_id = channel.split(":")[1].strip()
+            self.FSB.append((button_text, channel_id))
+            
+        logger.info(f"Loaded {len(self.FSB)} force sub channels: {self.FSB}")
+        
+    except Exception as e:
+        logger.error(f"Error in load_fsb_vars: {e}")
+        # Don't exit, just continue
 
 class Manhwa_Bot(pyrogram.Client, Vars):
   def __init__(self):
