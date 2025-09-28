@@ -21,18 +21,18 @@ class Vars:
     #include=["TG.users"]
   )
   
-  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "")
-  UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
+  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-100218690752")
+  UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "-1002186907526")
   DB_URL = os.environ.get("DB_URL", "mongodb://localhost:27017/manhwa_bot")
   
-  PORT = int(os.environ.get("PORT", "8080"))
+  PORT = int(os.environ.get("PORT", "8000"))
   OWNER = int(os.environ.get("OWNER","742402153"))
   ADMINS = os.environ.get("ADMINS", "742402153")
   ADMINS = [int(admin) for admin in (ADMINS).split(" ")]
   ADMINS.append(OWNER)
   
   IS_PRIVATE = os.environ.get("IS_PRIVATE", None) #True Or None  Bot is for admins only
-  CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", None)
+  CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", "-1002186907526")
   WEBS_HOST = os.environ.get("WEBS_HOST", None) # For Render and Koyeb
   
   DB_NAME = "Manhwadb"
@@ -45,7 +45,7 @@ class Vars:
   FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><i>❗️ You must join our channel before using this feature:</i></b>""")
   
   # Force Sub Channel Format : Button Text: Username(Without @) or Chat ID
-  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "𝕵𝖔𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: Guimi_Zhi_Zhu_Anime, 𝕸𝖆𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: Wizard_Bots")
+  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "𝕵𝖔𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: Guimi_Zhi_Zhu_Anime, 𝕸𝖆𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: DemonArmy")
   
   BYPASS_TXT = os.environ.get("BYPASS_TXT", """<blockquote><b>🚨 ʙʏᴘᴀss ᴅᴇᴛᴇᴄᴛᴇᴅ 🚨</b></blockquote>
 
@@ -249,7 +249,7 @@ class Manhwa_Bot(pyrogram.Client, Vars):
 
     """)
     self.username = usr_bot_me.username
-    self.logger.info("Make By https://t.me/Wizard_Bots ")
+    self.logger.info("Make By https://t.me/DemonArmy ")
     self.logger.info(f"Manhwa Bot Started as {usr_bot_me.first_name} | @{usr_bot_me.username}")
 
     if self.WEBS_HOST:
@@ -262,7 +262,7 @@ Sleep mode deactivated. Neural cores at 100%. Feed me tasks, and watch magic hap
 
     button = [[
       InlineKeyboardButton('*Start Now*', url= f"https://t.me/{usr_bot_me.username}?start=start"),
-      InlineKeyboardButton("*Channel*", url = "telegram.me/Wizard_Bots")
+      InlineKeyboardButton("*Channel*", url = "telegram.me/DemonArmy")
     ]]
 
     try: await self.send_photo(self.UPDATE_CHANNEL, photo=PICS, caption=MSG, reply_markup=InlineKeyboardMarkup(button))
