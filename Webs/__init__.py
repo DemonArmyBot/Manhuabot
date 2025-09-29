@@ -1,4 +1,4 @@
-#from .comick import AllMangaScraper
+from .comick import AllMangaScraper
 #from .mangamob import MangaMobWebs
 #from .mangafire import MangaFireWebs
 
